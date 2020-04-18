@@ -54,8 +54,8 @@ public class DroneManager : MonoBehaviour
         placementIndicator = FindObjectOfType<PlacementIndicator>();
         flyB.onClick.AddListener(EventOnClickFlyButton);
         landB.onClick.AddListener(EventOnClickLandButton);
-        leftRotation.onClick.AddListener(EventOnClicLeftRotationButton);
-        rightRotation.onClick.AddListener(EventOnClicRightRotationButton);
+        //leftRotation.onClick.AddListener(EventOnClicLeftRotationButton);
+        //rightRotation.onClick.AddListener(EventOnClicRightRotationButton);
     }
 
     // Update is called once per frame
@@ -76,7 +76,6 @@ public class DroneManager : MonoBehaviour
         {
             PlaceDrone();
         }     
-
     }
 
     void PlaceDrone()
@@ -172,7 +171,8 @@ public class DroneManager : MonoBehaviour
         }
     }
 
-       //Left Rotation Button
+    /*
+    //Left Rotation Button
     public void EventOnClicLeftRotationButton()
     {
         if(droneController.IsFlying())
@@ -187,6 +187,39 @@ public class DroneManager : MonoBehaviour
         if(droneController.IsFlying())
         {
             droneController.rightclickRotation = true;
+        }
+    }
+    */
+    
+     //Left Rotation Button
+    public void EventOnLeftRotationButtonPressed()
+    {
+        if(droneController.IsFlying())
+        {
+            droneController.leftClickRotation = true;
+        }
+    }
+        public void EventOnLeftRotationButtonRelease()
+    {
+        if(droneController.IsFlying())
+        {
+            droneController.leftClickRotation = false;
+        }
+    }
+
+    //Right Rotation Button
+    public void EventOnRightRotationButtonPressed()
+    {
+        if(droneController.IsFlying())
+        {
+            droneController.rightclickRotation = true;
+        }
+    }
+        public void EventOnRightRotationButtonRelease()
+    {
+        if(droneController.IsFlying())
+        {
+            droneController.rightclickRotation = false;
         }
     }
 

@@ -28,7 +28,7 @@ public class DroneController : MonoBehaviour
 
     Vector3 moveDrone = new Vector3(0.0f, 0.0f, 0.0f);
 
-    public float theSpeed = 0.5f;
+    public float theSpeed = 0.75f;
 
     public bool leftClickRotation = false;
     public bool rightclickRotation = false;
@@ -40,18 +40,6 @@ public class DroneController : MonoBehaviour
         theAnim = GetComponent<Animator>();
         theAudio = GetComponent<AudioSource>();
         droneState = DroneState.DRONE_STATE_IDLE;       
-    }
-
-    private float Speed()
-    {
-        float speed = theSpeed;
-
-        speed += speed + 0.05f;
-        if (speed >= 4.0f)
-        {
-            speed = 4.0f;
-        }
-        return speed;
     }
 
     private void AudioPlaySE()
@@ -97,27 +85,29 @@ public class DroneController : MonoBehaviour
 
         if(leftClickRotation)
         {
-            leftClickRotation = false;
-            rotation.y = rotation.y - 10.0f;            
+            rotation.y = rotation.y - 1.0f;        
         }
         if(rightclickRotation)
-        {
-            rightclickRotation = false;       
-            rotation.y = rotation.y + 10.0f;
+        {           
+            rotation.y = rotation.y + 1.0f;
         }
         return rotation.y;
     }
     public void DroneStateFlying()
     {
-        float angleZ = -30.0f * moveDrone.x * 60.0f * Time.deltaTime;
-        float angleX = 30.0f * moveDrone.z * 60.0f * Time.deltaTime;
-        //Turn Drone
-        float angleY = DroneRotation();
-        //Vector3 rotation = transform.localRotation.eulerAngles;
+        float angleZ = moveDrone.x * 60.0f * Time.deltaTime;
+        float angleX = moveDrone.z * 60.0f * Time.deltaTime; 
+        float angleY = DroneRotation();        
 
-        //transform.localRotation = Quaternion.Euler(angleX, angleY, angleZ);  
-        transform.localPosition += moveDrone * Speed() * Time.deltaTime;
-        transform.localRotation = Quaternion.Euler(angleX, angleY, angleZ);  
+        Transform childTransform = this.gameObject.transform.GetChild(0);
+        Vector3 childRotation = childTransform.localRotation.eulerAngles;        
+        float childAngleZ = -30.0f * moveDrone.x * 60.0f * Time.deltaTime;
+        float childAngleX = 30.0f * moveDrone.z * 60.0f * Time.deltaTime; 
+        
+        //Turn Drone
+        transform.Translate(moveDrone.normalized * theSpeed * Time.deltaTime); 
+        transform.localRotation = Quaternion.Euler(angleX, angleY, angleZ); 
+        childTransform.localRotation = Quaternion.Euler(childAngleX,childRotation.y,childAngleZ);
     }
 
     void UpdateDrone()

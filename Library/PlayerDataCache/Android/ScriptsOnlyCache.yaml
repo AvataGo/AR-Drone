@@ -22,10 +22,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -41,7 +39,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Image
     - UnityEngine.UI.Text
   sceneClasses:
-    Assets/Scenes/DroneAR20.unity:
+    Assets/Scenes/DroneAR33.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -797,5 +795,5 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 13
   scenePathNames:
-  - Assets/Scenes/DroneAR20.unity
-  playerPath: C:/CY/00Start/ARDrone/Builds/ARDrone21.apk
+  - Assets/Scenes/DroneAR33.unity
+  playerPath: C:/CY/00Start/ARDrone/Builds/ARDrone33.apk
